@@ -1,50 +1,75 @@
 import React from 'react';
 import SmallCard from './SmallCard';
+import { useState, useEffect, useRef} from 'react';
+// import axios from 'axios';
 
 /*  Cada set de datos es un objeto literal */
 
-/* <!-- Movies in DB --> */
-
-let moviesInDB = {
-    title: 'Movies in Data Base',
-    color: 'primary', 
-    cuantity: 21,
-    icon: 'fa-clipboard-list'
-}
-
-/* <!-- Total awards --> */
-
-let totalAwards = {
-    title:' Total awards', 
-    color:'success', 
-    cuantity: '79',
-    icon:'fa-award'
-}
-
-/* <!-- Actors quantity --> */
-
-let actorsQuantity = {
-    title:'Actors quantity' ,
-    color:'warning',
-    cuantity:'49',
-    icon:'fa-user-check'
-}
-
-let cartProps = [moviesInDB, totalAwards, actorsQuantity];
-
 function ContentRowMovies(){
-    return (
-    
-        <div className="row">
-            
-            {cartProps.map( (movie, i) => {
 
-                return <SmallCard {...movie} key={i}/>
-            
-            })}
+    const [productCount, setProductCount] = useState([])
+    const [categoryCount, setCategoryCount] = useState([])
+    const [userData, setUserData] = useState([])
 
-        </div>
-    )
-}
+    useEffect(() => {
+        fetch(`/api/products`)
+        .then(res => res.json())
+        .then(data => {
+            setProductCount(data.count)
+            setCategoryCount(Object.keys(data.countByCategory))
+        })
+        // .catch(console.log('Error en el fetch'))
+    }, []);
+
+    useEffect(() => {
+        fetch(`/api/users`)
+        .then(res => res.json())
+        .then(data => {
+            setUserData(data.count)
+        })
+        // .catch(console.log('Error en el fetch'))
+    }, []);
+
+    /* <!-- Movies in DB --> */
+    let productsInDB = {
+        title: 'Products in Data Base',
+        color: 'primary', 
+        quantity: productCount,
+        icon: 'fa-clipboard-list'
+    }
+
+    /* <!-- Total awards --> */
+
+    let totalUsers = {
+        title:' Total Users', 
+        color:'success', 
+        quantity: userData,
+        icon:'fa-award'
+    }
+
+    /* <!-- Actors quantity --> */
+
+    let categoriesInDB = {
+        title:'Category quantity' ,
+        color:'warning',
+        quantity: categoryCount.length,
+        icon:'fa-user-check'
+    }
+
+    let cardProps = [productsInDB, totalUsers, categoriesInDB];
+
+        return (
+        
+            <div className="row">
+                
+                {cardProps.map( (card, i) => {
+
+                    return <SmallCard {...card} key={i}/>
+                
+                })}
+
+            </div>
+        )
+    }
 
 export default ContentRowMovies;
