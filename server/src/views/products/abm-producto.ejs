@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header-modulo-admin") %>
+
+    <main>
+
+        <div class="div-titulo-boton-comprar">
+            <h2 class="titulo-abm-prods">ABM de productos: Alta, Baja o Modificación.</h2>
+        </div>
+
+        <section class="prods-destacados">
+
+            <article class="articulo-detalle-desktop">
+            
+                <form action="creacion-producto">
+                    <div>
+                        <button class="boton-abm" type="submit">Dar de ALTA un producto nuevo</button>
+                    </div>
+                </form>
+
+                <p class="texto-abm">Elegir un producto para Modificar o Dar de Baja</p>
+                <!-- Refactor -->
+                <% categories.forEach(categorie => { %>
+                    <% let prodsByCat = products.filter(product => {if(product.category_id == categorie.id) return product}) %>
+                    <% if (prodsByCat.length > 0) { %>
+                        <p><%= categorie.category_name %><br>
+                        <% prodsByCat.forEach (prod => { %> 
+                                <a href="/productos/editar/<%= prod.id %>">Editar</a> | <a href="/productos/baja-producto/<%= prod.id %>">Eliminar</a> | ID <%= prod.id %> | <%= prod.product_name %> <br>
+                                <% }) %> 
+                            </p>
+                            <br>
+                        <% } %>
+                    <% }) %>
+                
+            </article>
+          
+        </section>
+        
+    </main>
+
+    <%- include("../partials/footer") %>
+    <!-- 
+    <script src="/js/alert-landing-abm.js"></script>
+    -->
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<header>
+    <div class="header-superior">
+        <!-- div con el burger menu-->
+        <div class="header-burgerMenu">
+            <a class="header-links"><i class="fa-solid fa-bars"></i></a>
+        <!-- div con el resto de los iconos alineados a la derecha-->
+        </div>
+        <div class="header-otrosIconos">
+            <% if (locals.usuario) { %>
+                <p class="header-links"><%= usuario.user_first_name %></p>
+            <% } %>
+            <form action="/productos/search" method="GET">  
+                <input type="text" name="value" id="value" class="header-search-input">
+                <button type=submit><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <% if (!locals.usuario) { %>
+                <a class="header-links" href="/users/login"><i class="fa-solid fa-right-to-bracket"></i></a>
+            <% } else { %>
+                <a class="header-links" href="/users/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <% } %>
+            <a class="header-links" href="/users/registro"><i class="fa-solid fa-user"></i></a>
+            <a class="header-links" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+    <div class="header-navDesktop">
+        <p class="header-navText">
+            <a href="/">HOME</a> |
+            <a href="/productos/categoria/1">Guitarras y Bajos</a> |
+            <a href="/productos/categoria/2">Baterías</a> |
+            <a href="/productos/categoria/3">Amplificadores</a> |
+            <a href="/productos/categoria/4">Accesorios</a> |
+            <a href="#">Marcas</a> |
+            <a href="/productos/nuevos-ingresos">Nuevos Ingresos</a> |
+            <a href="/productos/usados">Usados</a> 
+             <% if (locals.usuario) { %>
+                <% if(usuario.user_type == "admin") { %>
+                     <a class="admin-boton" style="font-weight: bold" href="/productos/abm-productos"> ADMIN <i class="fa-solid fa-key"></i></a> 
+                <% } else { null } %>
+            <% } %>   
+            
+        </p>
+    </div>
+    <!-- div para el logo -->
+    <div class="header-divParaLogo">
+        <h2 class="header-logo"><a class="header-links" href='/'><span class="logo-digital">DIGITAL </span><span class="logo-sound">SOUND</span></a></h2>
+        <img class="header-iconoSonido" src="/img/icono-musica.png">
+    </div>
+    <div><p class="header-leyendaChica">Todo para el audiófilo</p></div>
+    <script src="/js/header.js"></script>  
+</header>

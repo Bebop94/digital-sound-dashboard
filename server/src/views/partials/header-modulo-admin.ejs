@@ -1,0 +1,43 @@
+<header>
+    <div class="header-superior-admin">
+        <!-- div con el burger menu-->
+        <div class="header-burgerMenu">
+            <a class="header-links"  href="#"><i class="fa-solid fa-bars"></i></a>
+        <!-- div con el resto de los iconos alineados a la derecha-->
+        </div>
+        <div class="header-div-mod-admin">
+            MÓDULO ADMIN
+        </div>
+        <div class="header-otrosIconos-admin">
+            <% if (locals.usuario) { %>
+                <p class="header-links"><%= usuario.nombre %></p>
+            <% } %>
+            <a class="header-links" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a class="header-links" href="#"><i class="fa-solid fa-user"></i></a>
+            <a class="header-links" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+    <div class="header-navDesktop-topNav">
+        <p class="header-navText">
+            <a href="/">HOME</a> |
+            <a href="/productos/categoria/1">Guitarras y Bajos</a> |
+            <a href="/productos/categoria/2">Baterías</a> |
+            <a href="/productos/categoria/3">Amplificadores</a> |
+            <a href="/productos/categoria/4">Accesorios</a> |
+            <a href="#">Marcas</a> |
+            <a href="/productos/nuevos-ingresos">Nuevos Ingresos</a> |
+            <a href="/productos/usados">Usados</a>
+        </p>
+    </div>
+    <div class="header-navDesktop-bottomNav">
+        <p class="header-navText">
+            <a href="/productos/abm-productos">ABM de productos</a> | <a href="/users/abm-usuarios">ABM de usuarios</a>
+        </p>
+    </div>
+    <!-- div para el logo -->
+    <div class="header-divParaLogo">
+        <h2 class="header-logo"><span class="logo-digital">DIGITAL </span><span class="logo-sound">SOUND</span></h2>
+        <img class="header-iconoSonido" src="/img/icono-musica.png">
+    </div>
+    <div><p class="header-leyendaChica">Todo para el audiófilo</p></div>
+</header>

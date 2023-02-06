@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header") %>
+
+    <main>
+
+        <!-- <section class="main-listar-secciones">
+       
+            <article class="main-article-seccion-ppal">
+                <img class="main-article__img" src="/img/header-guitarras.jpg">
+                    <h3 class="article-titulo">GUITARRAS Y BAJOS</h3>
+            </article>
+                         
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-bateria.jpg">
+                    <h3 class="article-titulo">BATERIAS</h3>
+                    <a href="#"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-amplificador.jpg">
+                    <h3 class="article-titulo">AMPLIFICADORES</h3>
+                    <a href="#"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-accesorios.jpg">
+                    <h3 class="article-titulo">ACCESORIOS</h3>
+                    <a href="#"><p class="article-button">Ver disponibles</p></a>
+            </article>
+            /
+        </section> -->
+
+        <div class="div-titulo-boton-comprar">
+            <h2 class="titulo-detalle-prod"><%= producto.product_name %></h2>
+            <form method="POST" action="/cart/agregar-producto/<%=producto.id%>">
+                <button type="submit" class="boton-comprar">Añadir al Carrito</button>
+            </form>
+        </div>
+
+        <section class="prods-destacados">
+
+            <article class="articulo-detalle-desktop">
+
+                <div>
+                    <p class="prod-destacado__precio"> $<%= parseInt(producto.product_price).toLocaleString() %></p>
+                </div>
+
+
+                <div class="div-interno-art-destacado">
+                    <p class="prod-destacado__titulo-mobile"> <%= producto.product_description_short %></p>
+                </div>
+
+                <div class="art-detalle-desktop-columnas">
+                    <div>
+                        <img class="img-detalle-prod" src="/img/products/<%= producto.product_images %>">
+                    </div>
+                    <div>
+                        <p class="texto-detalle-prod">
+                            <%= producto.product_description_long %>
+                        </p>
+                    </div>
+
+                </div>
+                
+            </article>
+
+          
+        </section>
+        
+    </main>
+
+    <%- include("../partials/footer") %>
+    
+</body>
+</html>

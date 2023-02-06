@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header-modulo-admin") %>
+
+    <main>
+
+        <div class="div-titulo-boton-comprar">
+            <h2 class="titulo-alta-prod">ABM de productos: Alta de un producto nuevo.</h2>
+        </div>
+
+        <section class="prods-destacados">
+
+            <article class="articulo-detalle-desktop" id="formulario">
+                <!-- <% if(locals.errors) { %>
+                    <% for (let error in errors ) { %>
+                        <p class="form-error"><%= errors[error].msg %></p>
+                    <% } %>
+                <% } %> -->
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="nombreProd">Nombre del producto </label>
+                        <input 
+                            class="input-abm" 
+                            type="text" 
+                            name="nombreProd" 
+                            id="nombreProd" 
+                            placeholder="Ingresar el nombre del producto"
+                            value="<%= locals.oldData ? oldData.nombreProd : null %>"
+                        >
+                        <% if (locals.errors && errors.nombreProd) { %>
+                            <p class="form-error"><%= errors.nombreProd.msg %></p>
+                        <% } %>
+                        <p class="form-error" id="nombreError"></p>
+                    </div>
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="precioProd">Precio del producto </label>
+                        <input 
+                            class="input-abm-precio" 
+                            type="text" 
+                            name="precioProd" 
+                            placeholder="Ingresar precio"
+                            value="<%= locals.oldData ? oldData.precioProd : null %>"
+                        >
+                    </div>
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="subtituloProd">Subtitulo del producto </label>
+                        <input 
+                            class="input-abm" 
+                            type="text" 
+                            name="subtituloProd" 
+                            placeholder="Ingresar el subtitulo del producto"
+                            value="<%= locals.oldData ? oldData.subtituloProd : null %>"
+                        >
+                    </div>
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="categoriaProd">Categoria </label>
+                        <select class="input-abm" name="categoriaProd">
+                        <% for (i=0; i < categories.length; i++) { %>
+                            <option value="<%= categories[i].id %>"><%= categories[i].category_name %></option>
+                        <% } %>
+                        </select>
+                    </div>
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="fotoProd">Foto del producto </label>
+                        <input class="input-abm" type="file"  name="fotoProd" id="fotoProd">
+                        <% if (locals.errors && errors.fotoProd) { %>
+                            <p class="form-error"><%= errors.fotoProd.msg %></p>
+                        <% } %>
+                        <p class="form-error" id="fotoError"></p>
+                    </div>
+                    <div class="div-select">
+                        <label class="label-alta-prod" for="nuevo-prod">El producto es usado?</label>
+                        <span class="texto-span">Si</span><input class="abm-radiobutton" type="radio" name="usado" value="1"><span class="texto-span">No</span><input class="abm-radiobutton" type="radio" name="usado" value="0">
+                    </div>
+                    <div class="div-select">
+                        <label class="label-alta-prod" for="destacado-prod">El producto es un lanzamiento destacado?</label>
+                        <span class="texto-span">Si</span><input class="abm-radiobutton" type="radio" name="lanzamiento" value="1"><span class="texto-span">No</span><input class="abm-radiobutton" type="radio" name="viejo" value="0">
+                    </div>
+                    <div class="div-select-alta">
+                        <label class="label-alta-prod" for="descripcionProd">Información adicional</label>
+                        <textarea 
+                            class="textarea-abm" 
+                            name="descripcionProd" 
+                            id="descripcionProd" 
+                            placeholder="Ingresar aquí la informaión adicional del producto"
+                        ><%= locals.oldData ? oldData.descripcionProd : null %></textarea>
+                        <% if (locals.errors && errors.descripcionProd) { %>
+                            <p class="form-error"><%= errors.descripcionProd.msg %></p>
+                        <% } %>
+                        <p class="form-error" id="descripcionError"></p>
+                    </div>
+                    <div class="div-select">
+                        <button class="boton-abm" type="submit">Dar de ALTA</button>
+                        <button class="boton-abm" type="reset">Borrar el formulario</button>
+                    </div>
+                </form>
+
+            </article>
+
+          
+        </section>
+        
+    </main>
+
+    <%- include("../partials/footer") %>
+    <script src="/js/alta-producto.js"></script>
+</body>
+</html>

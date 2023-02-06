@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("./partials/head") %>
+</head>
+<body>
+
+    <%- include("./partials/header") %>
+
+    <main>
+        <!-- Seccion del main para listar las diferentes categorias
+            1. Guitarras y bajos
+            2. Baterias
+            3. Amplificadores
+            4. Accesorios
+        -->
+        <section class="main-listar-secciones">
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-guitarra.jpg">
+                    <h3 class="article-titulo">GUITARRAS Y BAJOS</h3>
+                    <a href="/productos/categoria/1"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-bateria.jpg">
+                    <h3 class="article-titulo">BATERIAS</h3>
+                    <a href="/productos/categoria/2"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-amplificador.jpg">
+                    <h3 class="article-titulo">AMPLIFICADORES</h3>
+                    <a href="/productos/categoria/3"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+            <article class="main-article">
+                <img class="main-article__img" src="/img/article-index-accesorios.jpg">
+                    <h3 class="article-titulo">ACCESORIOS</h3>
+                    <a href="/productos/categoria/4"><p class="article-button">Ver disponibles</p></a>
+            </article>
+
+        </section>
+
+        <h2 class="main-titulo-destacado"><%=title%></h2>
+
+        <section class="prods-destacados">
+
+            <% results.forEach (result => { %> 
+                <article class="articulo-destacado">
+                    <div class="div-interno-art-destacado">
+                        <p class="prod-dectacado__titulo"><%= result.product_name %> </p>
+                    </div>
+                    <div class="div-interno-art-destacado">
+                        <p class="prod-destacado__detalle">
+                            <%= result.product_detail %>
+                        </p>
+                    </div>
+                    <div class="div-interno-art-destacado">
+                        <p class="prod-dectacado__precio">$<%= parseInt(result.product_price).toLocaleString() %> </p>
+                        <a class="prod-destacado__link" href="/productos/detalle/<%= result.id %> "><p class="prod-destacado__button">Ver detalle</p></a>
+                    </div>
+                    <div class="div-imagen-prod">
+                        <img class="prod-destacado__img" src="/img/products/<%= result.product_images %> ">
+                    </div>
+                </article>
+            <% }) %> 
+
+        </section>
+        
+    </main>
+
+    <%- include("./partials/footer") %>
+    
+</body>
+</html>

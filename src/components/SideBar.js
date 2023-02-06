@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentWrapper from './ContentWrapper';
-import GenresInDb from './GenresInDb';
-import LastCreatedProduct from './LastCreatedProduct';
+import ContentRowCenter from './ContentRowCenter';
+import Chart from './Chart';
 import ContentRowMovies from './ContentRowMovies';
 import SearchMovies from './SearchMovies'
 import NotFound from './NotFound';
@@ -37,74 +37,57 @@ function SideBar(){
                 <div className="sidebar-heading">Actions</div>
 
                 {/*<!-- Nav Item - Pages -->*/}
-                <li className="nav-item">
-                <Link className="nav-link" to="/GenresInDb">
+                {/* <li className="nav-item">
+                <Link className="nav-link" to="/ContentRowCenter">
                         <i className="fas fa-fw fa-folder"></i>
                         <span>Pages</span>
                     </Link>
-                </li>
+                </li> */}
 
                 {/*<!-- Nav Item - Charts -->*/}
-                <li className="nav-item">
-                    <Link className="nav-link" to="/LastCreatedProduct">
+                {/* <li className="nav-item">
+                    <Link className="nav-link" to="/ContentRowMovies">
                         <i className="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></Link>
-                </li>
+                </li> */}
 
                 {/*<!-- Nav Item - Tables -->*/}
                 <li className="nav-item">
-                <Link className="nav-link" to="/ContentRowMovies">
+                <Link className="nav-link" to="/Chart">
                         <i className="fas fa-fw fa-table"></i>
                         <span>Tables</span></Link>
                 </li>
 
-                {/*<!-- Nav Item - Search -->*/}
+                {/* <!-- Nav Item - Search -->
                 <li className="nav-item">
                 <Link className="nav-link" to="/SearchMovies">
                         <i className="fas fa-search"></i>
                         <span>Search</span></Link>
-                </li>
+                </li> */}
 
                 {/*<!-- Divider -->*/}
                 <hr className="sidebar-divider d-none d-md-block"/>
             </ul>
             {/*<!-- End of Sidebar -->*/}
 
-            {/*<!-- Microdesafio 1 -->*/}
-            {/*<!--<Route exact path="/">
-                <ContentWrapper />
-            </Route>
-            <Route path="/GenresInDb">
-                <GenresInDb />
-            </Route>
-            <Route path="/LastMovieInDb">
-                <LastMovieInDb />
-            </Route>
-            <Route path="/ContentRowMovies">
-                <ContentRowMovies />
-            </Route>*/}
-            {/*<!-- End Microdesafio 1 -->*/}
-
-            {/*<!-- End Microdesafio 2 -->*/}
             <Switch>
                 <Route exact path="/">
                     <ContentWrapper />
                 </Route>
-                <Route path="/GenresInDb">
-                    <GenresInDb />
-                </Route>
-                <Route path="/LastCreatedProduct">
-                    <LastCreatedProduct />
+                <Route path="/ContentRowCenter">
+                    <ContentRowCenter />
                 </Route>
                 <Route path="/ContentRowMovies">
                     <ContentRowMovies />
+                </Route>
+                <Route path="/Chart">
+                    <Chart />
                 </Route>
                 <Route path="/SearchMovies">
                     <SearchMovies />
                 </Route>
                 <Route component={NotFound} />
             </Switch>
-            {/*<!-- End Microdesafio 2 -->*/}
         </React.Fragment>
     )
 }

@@ -44,16 +44,16 @@ function ContentRowMovies(){
         title:' Total Users', 
         color:'success', 
         quantity: userData,
-        icon:'fa-award'
+        icon:'fa-user-check'
     }
-
+    
     /* <!-- Actors quantity --> */
-
+    
     let categoriesInDB = {
         title:'Category quantity' ,
         color:'warning',
         quantity: categoryCount.length,
-        icon:'fa-user-check'
+        icon:'fa-award'
     }
 
     let cardProps = [productsInDB, totalUsers, categoriesInDB];

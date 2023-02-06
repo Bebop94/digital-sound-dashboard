@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <%- include("../partials/head") %>
+    </head>
+    <body>
+
+        <%- include("../partials/header") %>
+
+        <main class="main-formularios">
+            <div class="login-block" id="formulario">
+                <h2>Iniciar sesión o <a href="/users/registro">crear una cuenta</a></h2>
+                <div id="front-errors"></div>
+                <% if(locals.errors) { %>
+                    <% for (let error in errors ) { %>
+                        <p class="form-error"><%= errors[error].msg %></p>
+                    <% } %>
+                <% } %>
+                <form action="/users/login" method="POST" class="form-ingreso">
+                    <div class="control-formulario">
+                        <input id='email' name="email" placeholder=" Email" >
+                        <p class="form-error" id="emailError"></p>
+                    </div>
+                    <div class="control-formulario">
+                        <input id='password' type="password" name="password" placeholder=" Contraseña">
+                        <p class="form-error" id="passwordError"></p>
+                    </div>
+                    <div class="control-formulario control-formulario--remember">
+                        <label>Recuérdame</label>
+                        <input type="checkbox" name="remember">
+                    </div>
+                    <div class="control-formulario">
+                        <button type="submit" class="button button--submit">Continuar</button>
+                    </div>
+                    <div>
+                        <p class="legend legend--tyc"><a href=#>¿Olvidaste tu contraseña?</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="login-block">
+                <h3>O ingresá con tus redes sociales</h3>
+                <hr>
+                <div class="social-networks">
+                    <button class="button button--facebook">Continuar con Facebook</button>
+                    <button class="button button--google">Continuar con Google</button>
+                    <button class="button button--apple">Continuar con Apple</button>
+                </div>
+            </div>
+        </main>
+      
+        <%- include("../partials/footer") %>
+    <script src="/js/login.js"></script>
+    </body>
+</html>

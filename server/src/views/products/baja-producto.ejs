@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header-modulo-admin") %>
+
+    <main>
+
+        <div class="div-titulo-boton-comprar">
+            <h2 class="titulo-alta-prod">ABM de productos: BAJA de producto</h2>
+        </div>
+
+        <section class="prods-destacados">
+
+            <article class="articulo-detalle-desktop">
+
+                <form action="abm-productos" method="GET">
+                    <div class="div-select">
+                        <h2 class="h2-confirmacion-baja">Confirma la baja de "<%= producto.product_name %>"?</h2>
+                    </div>
+                    <div class="div-select">
+                        <button class="boton-abm" type="submit">Regresar</button>
+                    </div>
+                </form>
+                <form action="" method="POST">
+                    <div class="div-select">
+                        <button class="boton-abm-baja" type="submit">Confirmar la BAJA</button>
+                    </div>
+                </form>
+            </article>
+
+          
+        </section>
+        
+    </main>
+
+    <%- include("../partials/footer") %>
+    
+</body>
+</html>

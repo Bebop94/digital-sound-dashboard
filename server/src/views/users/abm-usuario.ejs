@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header-modulo-admin") %>
+
+    <main>
+
+        <div class="div-titulo-boton-comprar">
+            <h2 class="titulo-abm-prods">ABM de USUARIOS: Alta, Baja o Modificación.</h2>
+        </div>
+
+        <section class="prods-destacados">
+
+            <article class="articulo-detalle-desktop">
+            
+                <form action="alta-usuario">
+                    <div>
+                        <button class="boton-abm" type="submit">Dar de ALTA un usuario nuevo</button>
+                    </div>
+                </form>
+
+                <p class="texto-abm">Elegir un usuario para Modificar o Dar de Baja</p>
+                <p>
+                    <% usuarios.forEach (usuario => { %> 
+                    <a href="/users/editar/<%= usuario.id %>">Editar</a> | <a href="/users/baja/<%= usuario.id %>">Eliminar</a> | ID <%= usuario.id %> | <%= usuario.user_first_name %> <%= usuario.user_last_name %> <br>
+                    <% }) %> 
+                </p>
+                <br>
+                 
+                
+            </article>
+
+          
+        </section>
+        
+    </main>
+
+    <%- include("../partials/footer") %>
+    <!-- 
+    <script src="/js/alert-landing-abm.js"></script>
+    -->
+    
+</body>
+</html>

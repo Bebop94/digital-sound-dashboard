@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+
+    <%- include("../partials/header") %>
+
+    <main>
+
+        <section class="main-listar-secciones">
+
+        </section>
+        <!-- Refactor -->
+        <% categories.forEach(categorie => { %>
+            <% let usadosByCat = productosUsados.filter(prodUsado => {if(prodUsado.category_id == categorie.id) return prodUsado}) %>
+            <% if (usadosByCat.length > 0) { %>
+                <h2 class="main-titulo-destacado">
+                    <%= categorie.category_name %>
+                </h2>
+                <section class="prods-destacados">
+                    <% usadosByCat.forEach (prodUsado => { %> 
+                        <article class="articulo-destacado">
+                            <div class="div-interno-art-destacado">
+                                <p class="prod-dectacado__titulo"> <%= prodUsado.product_name %> </p>
+                            </div>
+                            <div class="div-interno-art-destacado">
+                                <p class="prod-destacado__detalle">
+                                    <%= prodUsado.product_description_short %>
+                                </p>
+                            </div>
+                            <div class="div-interno-art-destacado">
+                                <p class="prod-dectacado__precio">$<%= parseInt(prodUsado.product_price).toLocaleString() %> </p>
+                                <a class="prod-destacado__link" href="/productos/detalle/<%= prodUsado.id %>"><p class="prod-destacado__button">Ver detalle</p></a>
+                            </div>
+                            <div class="div-imagen-prod">
+                                <img class="prod-destacado__img" src="/img/products/<%= prodUsado.product_images %> ">
+                            </div>
+                        </article>
+                    <% }) %>
+                </section>
+                <% } %> 
+        <%  }) %>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+    
+</body>
+</html>
