@@ -34,7 +34,7 @@ function LastCreatedProduct(){
                         <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 40 +'rem'}} src={lastProduct.imagen} alt="Imagen de producto"/>
                     </div>
                     <p>{lastProduct.product_description_short}</p>
-                    <a className="btn btn-danger" rel='external' href='/'>View product detail</a>
+                    <a className="btn btn-danger" rel='external' href={lastProduct.detail} target='_blank'>View product detail</a>
                 </div>
             </div>
         </div>
