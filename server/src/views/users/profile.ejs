@@ -18,15 +18,16 @@
                             <input placeholder="Apellido">
                         </div> Formulario con Nombre y Apellido en misma linea -->
                         <div class="control-formulario">
-                            <p>Nombre: <%= usuario.nombre %></p>
+                            <p>Nombre: <%= usuario.user_first_name %></p>
                         </div>
                         <div class="control-formulario">
-                            <p>Apellido: <%= usuario.apellido %></p>
+                            <p>Apellido: <%= usuario.user_last_name %></p>
                         </div>
                         <div class="control-formulario">
-                            <p>Email: <%= usuario.email %></p>
+                            <p>Email: <%= usuario.user_email %></p>
                         </div>
                     </div>
+                    <img class="img-detalle-prod" style="margin-top: 20px" src="/img/users/<%= usuario.user_image %>">
                 </div>
                 <div class="vertical-line" style="height: 150px">
                 </div>

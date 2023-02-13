@@ -1,12 +1,8 @@
 let db = require("../../database/models")
 const Op = db.Sequelize.Op
 const { validationResult, body } = require('express-validator')
-const url = require('url')
-
-// const prodsFilePath = path.join(__dirname, "../data/productos-data-base.json");
-// const categoriesFilePath = path.join(__dirname, "../data/categorias.json");
-// const products = JSON.parse(fs.readFileSync(prodsFilePath, 'utf-8'));
-// const categories = JSON.parse(fs.readFileSync(categoriesFilePath, 'utf-8'));
+const url = require('url');
+const e = require("express");
 
 const productsController = {
 
@@ -35,13 +31,6 @@ const productsController = {
         })
 
     },
-
-    //
-    
-    // Response para el carrito de compras 
-    // carrito: (req, res) => {
-    //     res.render("products/carrito", {usuario : req.session.usuarioLogeado})
-    // },
 
     // Response para la pag de ABM de productos 
     abm: (req, res) => {
@@ -93,23 +82,6 @@ const productsController = {
             })
         }
 
-        // let newProduct = {
-        //     "id": Date.now(),
-        //     "titulo": req.body.nombreProd,
-        //     "categoria": parseInt(req.body.categoriaProd),
-        //     "precio": parseInt(req.body.precioProd),
-        //     "subtitulo": req.body.subtituloProd,
-        //     "imagen": req.file.filename,
-        //     // "imagen": req.body.fotoProd,
-        //     "nuevo": req.body.nuevo == '1' ? true:false,
-        //     "destacado": req.body.lanzamiento == '1' ? true:false,
-        //     "descripcion": req.body.descripcionProd
-        // };
-
-        // products.push(newProduct)
-
-        // fs.writeFileSync(prodsFilePath, JSON.stringify(products, null, " "))
-
     },
 
     // Reponse para baja de un producto
@@ -127,16 +99,11 @@ const productsController = {
         .then(() => {
             res.redirect('/productos/abm-productos')
         })
-        // let idToDelete = parseInt(req.params.id)
-        // let productsMod = products.filter( product => {
-        //     return product.id != idToDelete;
-        // })
-
-        // fs.writeFileSync(prodsFilePath, JSON.stringify(productsMod, null, " "))
     },
 
     // Reponse para editar de un producto
     editar: (req, res) => {
+        
         promesaCategoria = db.Categoria.findAll()
         promesaProductos = db.Producto.findByPk(req.params.id)
 
@@ -147,48 +114,38 @@ const productsController = {
     },
 
     confirmarEdicion: (req, res) => {
-        db.Producto.findByPk(req.params.id)
-        .then(producto => {
-            db.Producto.update({
-                product_name: req.body.nombreProd,
-                product_description_short: req.body.subtituloProd,
-                product_description_long : req.body.descripcionProd,
-                product_price: parseInt(req.body.precioProd),
-                product_images: !req.file ? producto.product_images: req.file.filename,
-                flag_hot_product: req.body.lanzamiento == '1' ? true:false,
-                flag_used_product: req.body.usado == '1' ? true:false,
-                category_id: parseInt(req.body.categoriaProd)
-            }, {
-                where: {id : req.params.id}
+
+        const resultValidation = validationResult(req);
+
+        if (resultValidation.errors.length > 0) {
+            db.Categoria.findAll()
+            .then(categories => {
+                return res.render("products/edicion-producto", {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body,
+                    categories
+                })
+            }) 
+        } else {  
+            db.Producto.findByPk(req.params.id)
+            .then(producto => {
+                db.Producto.update({
+                    product_name: req.body.nombreProd,
+                    product_description_short: req.body.subtituloProd,
+                    product_description_long : req.body.descripcionProd,
+                    product_price: parseInt(req.body.precioProd),
+                    product_images: !req.file ? producto.product_images: req.file.filename,
+                    flag_hot_product: req.body.lanzamiento == '1' ? true:false,
+                    flag_used_product: req.body.usado == '1' ? true:false,
+                    category_id: parseInt(req.body.categoriaProd)
+                }, {
+                    where: {id : req.params.id}
+                })
             })
-        })
-        .then(() => {
-            res.redirect('/productos/abm-productos')
-        })
-        
-        // let producto = products.find( product => {
-        //     return product.id == req.params.id
-        // });    
-
-        // let prodEditado = {
-        //     "id": producto.id,
-        //     "titulo": req.body.nombreProd,
-        //     "categoria": parseInt(req.body.categoriaProd),
-        //     "precio": parseInt(req.body.precioProd),
-        //     "subtitulo": req.body.subtituloProd,
-        //     "imagen": !req.file ? producto.imagen: req.file.filename,
-        //     "nuevo": req.body.nuevo == '1' ? true:false,
-        //     "destacado": req.body.lanzamiento == '1' ? true:false,
-        //     "descripcion": req.body.descripcionProd
-        // };
-
-        // let productsReplace = products.filter( product => {
-        //     return product.id != parseInt(producto.id);
-        // })
-
-        // productsReplace.push(prodEditado)
-
-        // fs.writeFileSync(prodsFilePath, JSON.stringify(productsReplace, null, " "))
+            .then(() => {
+                res.redirect('/productos/abm-productos')
+            })
+        }
 
     },
 

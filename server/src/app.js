@@ -7,6 +7,7 @@ const userRouter = require("./routers/user.routers");
 const cartRouter = require("./routers/cart.router");
 const apiUserRouter = require("./routers/api/api.user.router")
 const apiProductRouter = require("./routers/api/api.product.router")
+const apiCartRouter = require("./routers/api/api.cart.router")
 
 const methodOverride = require("method-override");
 const cookieParser = require('cookie-parser');
@@ -47,6 +48,7 @@ app.use("/cart", cartRouter);
 
 app.use("/api/users",apiUserRouter)
 app.use("/api/products",apiProductRouter)
+app.use("/api/cart",apiCartRouter)
 
 
 // Seteo inicial de error 404

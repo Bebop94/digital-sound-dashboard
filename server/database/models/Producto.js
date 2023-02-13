@@ -76,7 +76,7 @@ module.exports = function(sequelize, dataTypes) {
             timestamps: false
         });
 
-        Producto.hasMany(models.Carrito_Producto, {
+        Producto.hasMany(models.CarritoProducto, {
             as: 'carrito_producto',
             foreignKey: 'product_id'
         })

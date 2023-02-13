@@ -7,7 +7,7 @@ window.onload = () => {
     let fotoError = document.querySelector('#fotoError')
     let descripcionError = document.querySelector('#descripcionError');
     
-nombreProducto.addEventListener('blur',() => {
+    nombreProducto.addEventListener('blur',() => {
         if (nombreProducto.value == '') {
             nombreError.innerHTML = 'Este campo no puede estar vacío'
       } else if (nombreProducto.value.length < 5) {
@@ -39,6 +39,7 @@ nombreProducto.addEventListener('blur',() => {
     });
 
     formulario.addEventListener('submit',(e) => {
+        console.log(fotoProducto.value)
         extension = fotoProducto.value.split('.').pop().toUpperCase()
         admittedExtensions = ['JPG','JPEG', 'PNG', 'GIF']
         errors = []
@@ -53,9 +54,6 @@ nombreProducto.addEventListener('blur',() => {
             if (!(admittedExtensions.includes(extension))) {
                 errors.push('El archivo debe ser un JPG, JPEG, PNG, o GIF')
             }
-        } else if (fotoProducto.value == '') {
-            errors.push('Debes incluir una foto')
-            fotoError.innerHTML = 'Debes incluir una foto'
         };
 
         if (descripcionProducto.value == '') {

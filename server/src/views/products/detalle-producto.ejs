@@ -9,37 +9,10 @@
 
     <main>
 
-        <!-- <section class="main-listar-secciones">
-       
-            <article class="main-article-seccion-ppal">
-                <img class="main-article__img" src="/img/header-guitarras.jpg">
-                    <h3 class="article-titulo">GUITARRAS Y BAJOS</h3>
-            </article>
-                         
-            <article class="main-article">
-                <img class="main-article__img" src="/img/article-index-bateria.jpg">
-                    <h3 class="article-titulo">BATERIAS</h3>
-                    <a href="#"><p class="article-button">Ver disponibles</p></a>
-            </article>
-
-            <article class="main-article">
-                <img class="main-article__img" src="/img/article-index-amplificador.jpg">
-                    <h3 class="article-titulo">AMPLIFICADORES</h3>
-                    <a href="#"><p class="article-button">Ver disponibles</p></a>
-            </article>
-
-            <article class="main-article">
-                <img class="main-article__img" src="/img/article-index-accesorios.jpg">
-                    <h3 class="article-titulo">ACCESORIOS</h3>
-                    <a href="#"><p class="article-button">Ver disponibles</p></a>
-            </article>
-            /
-        </section> -->
-
         <div class="div-titulo-boton-comprar">
             <h2 class="titulo-detalle-prod"><%= producto.product_name %></h2>
             <form method="POST" action="/cart/agregar-producto/<%=producto.id%>">
-                <button type="submit" class="boton-comprar">Añadir al Carrito</button>
+                <button type="submit" class="boton-comprar" data-id="<%=producto.id%>">Añadir al Carrito</button>
             </form>
         </div>
 
@@ -67,7 +40,7 @@
                     </div>
 
                 </div>
-                
+                <div id="snackbar">El producto fue añadido al Carrito!</div>
             </article>
 
           
@@ -76,6 +49,6 @@
     </main>
 
     <%- include("../partials/footer") %>
-    
+    <script src="/js/botones-agregar-carrito.js"></script>
 </body>
 </html>

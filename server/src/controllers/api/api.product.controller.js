@@ -37,7 +37,6 @@ const productsApiController = {
     item: (req,res) => {
         db.Producto.findByPk(req.params.id, {include: ['categoria','marca']})
         .then(producto => {
-            console.log(producto)
             res.json({
                 id: producto.id,
                 product_name: producto.product_name,

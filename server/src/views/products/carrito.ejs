@@ -32,65 +32,27 @@
             <!-- div 2/3 del resumen del carrito, precio y cant de items-->
             <div class="section-precio-cant">
                 <div class="section-precio-cant__contenedor-precio">
-                    <p class="section-precio-cant__contenedor-precio--txt-precio">Total </p>
-                    <p class="section-precio-cant__contenedor-precio--txt-precio">$<%=cartValue.toLocaleString()%></p>
+                    <p class="section-precio-cant__contenedor-precio--txt-precio" id="cart-total-text">Total </p>
+                    <p class="section-precio-cant__contenedor-precio--txt-precio" id="cart-total"></p>
                 </div>
-                <!-- <div class="section-precio-cant__contenedor-iva">
-                    <p class="section-precio-cant__contenedor-precio--txt-iva">IVA </p>
-                    <p class="section-precio-cant__contenedor-precio--txt-iva">$<%=cartValue*0.21%></p>
-                </div>
-                <div class="section-precio-cant__contenedor-grand-total">
-                    <p class="section-precio-cant__contenedor-precio--grand-total">Total </p>
-                    <p class="section-precio-cant__contenedor-precio--grand-total">$<%=cartValue*1.21%></p>
+                <!-- <div class="section-precio-cant__contenedor-cant">
+                    <p class="section-precio-cant__contenedor-precio--txt-cant" id="cart-quantity"></p>
                 </div> -->
-                <div class="section-precio-cant__contenedor-cant">
-                    <p class="section-precio-cant__contenedor-precio--txt-cant" ><%=cartProducts.length%> items cargados</p>
-                </div>
             </div>              
             <!-- div 3/3 del resumen del carrito, botón de compra-->
             <div class="section-resumen-compra__boton">
                 <form>
-                    <button type="submit" class="boton-comprar">Comprar Ahora</button>
+                    <button type="submit" class="boton-comprar" id="boton-comprar">Comprar Ahora</button>
                 </form>
             </div>
         </section>
         <!-- section principal del carrito donde se muestra la info de los productos-->
         <section class="products">
-            <% cartProducts.forEach(product => { %>
-                <article class="cart-product">
-                <div class="product-info">
-                    <div class="product-image">
-                        <a href="/productos/detalle/<%= product.id %>"><img src="/img/products/<%=product.product_images%>"></a>
-                    </div>
-                    <div class="product-details">
-                        <h4><%=product.product_name%></h4>
-                        <p class="sku">SKU <%=product.id%></p>
-                        <div class="product-description">
-                            <p><%=product.product_description_short%></p>
-                        </div>
-                        <a href="/cart/quitar-producto/<%= product.id %>">Quitar</a>
-                    </div>
-                </div>
-                <div class="price-quantity">
-                    <div class="price-quantity-div">
-                        $<%=parseInt(product.product_price).toLocaleString()%>
-                    </div>
-                    <div class="product-quantity-div">
-                        <i class="fa-solid fa-square-minus"></i>
-                        <input type="tel" name="shopping-cart-quantity" class="quantity-input" value="<%=prodQuantities.filter(prod => {return prod.product_id == product.id})[0].product_quantity%>">
-                        <i class="fa-solid fa-square-plus"></i>
-                    </div>
-                    <div class="price-x-quantity">
-                        $<%=parseInt(product.product_price).toLocaleString()%> * Q
-                    </div>
-                </div>
-            </article>
-            <% }) %>
         </section>
 
     </main>
 
     <%- include("../partials/footer") %>
-
+    <script src="/js/carrito.js"></script>`
 </body>
 </html>

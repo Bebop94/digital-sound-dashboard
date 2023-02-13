@@ -15,72 +15,106 @@
       </div>
 
       <section class="prods-destacados">
-        <article class="articulo-detalle-desktop">
+        <article class="articulo-detalle-desktop" id="formulario">
+          
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="div-select-alta">
               <label class="label-alta-prod" for="nombreProd">Nombre del producto</label>
-              <input class="input-abm" type="text" name="nombreProd" value="<%= editable.product_name %>" required/>
+              <input class="input-abm" type="text" name="nombreProd" id="nombreProd" value="<%= locals.oldData ? oldData.nombreProd : editable.product_name %>" />
+              <% if (locals.errors && errors.nombreProd) { %>
+                  <p class="form-error"><%= errors.nombreProd.msg %></p>
+              <% } %>
+              <p class="form-error" id="nombreError"></p>
             </div>
             <div class="div-select-alta">
               <label class="label-alta-prod" for="precioProd">Precio del producto</label>
-              <input class="input-abm-precio" type="text" name="precioProd" value="<%= editable.product_price %>" required/>
+              <input class="input-abm-precio" type="text" name="precioProd" value="<%= locals.oldData ? oldData.precioProd : editable.product_price %>" />
             </div>
             <div class="div-select-alta">
-              <label class="label-alta-prod" for="subtitulProd">Subtitulo del producto</label>
-              <input class="input-abm" type="text" name="subtituloProd" value="<%= editable.product_description_short %>" required/>
+              <label class="label-alta-prod" for="subtituloProd">Subtitulo del producto</label>
+              <input class="input-abm" type="text" name="subtituloProd" value="<%= locals.oldData ? oldData.subtituloProd : editable.product_description_short %>" />
             </div>
             <div class="div-select-alta">
               <label class="label-alta-prod" for="categoriaProd">Categoria</label>
-              <select class="input-abm" name="categoriaProd" required>
-              <% categories.forEach ( categorie => { %>
-                <% if (categorie.id == editable.category_id) { %>
-                        <option value="<%= categorie.id %>" selected="selected"><%= categorie.category_name %></option>
-                <% } else { %>
-                        <option value="<%= categorie.id %>"><%= categorie.name %></option>
-                <% } %>
-              <% }) %>        
+              <select class="input-abm" name="categoriaProd">
+                <% categories.forEach ( categorie => { %>
+                  <% if (locals.oldData) { %>}
+                    <% if (categorie.id == oldData.categoriaProd) { %>
+                          <option value="<%= categorie.id %>" selected="selected"><%= categorie.category_name %></option>
+                    <% } else { %>
+                          <option value="<%= categorie.id %>"><%= categorie.category_name %></option>
+                    <% } %>
+                  <% } else { %>
+                    <% if (categorie.id == editable.category_id) { %>
+                          <option value="<%= categorie.id %>" selected="selected"><%= categorie.category_name %></option>
+                    <% } else { %>
+                          <option value="<%= categorie.id %>"><%= categorie.category_name %></option>
+                    <% } %>
+                  <% } %>
+                <% }) %> 
               </select>
             </div>
             <div class="div-select-alta">
               <label class="label-alta-prod" for="fotoProd">Foto del producto: sí no se elige una nueva foto, se utilizará la que estaba por defecto.</label>
-              <input class="input-abm" type="file" name="fotoProd" accept=".jpg, .jpeg, .png, .gif"/>
+              <input class="input-abm" type="file" name="fotoProd" id="fotoProd"/>
+              <% if (locals.errors && errors.fotoProd) { %>
+                  <p class="form-error"><%= errors.fotoProd.msg %></p>
+              <% } %>
+              <p class="form-error" id="fotoError"></p>
             </div>
             <div class="div-select">
               <label class="label-alta-prod" for="nuevo-prod">El producto es usado?</label>
               <span class="texto-span">Si</span>
-              <input class="abm-radiobutton" type="radio" name="nuevo" value="1"
-              <% if (editable.flag_used_product == true) {%> checked <%}  %> />
+              <input 
+                class="abm-radiobutton" 
+                type="radio" 
+                name="usado" 
+                value="1"
+                <% if (locals.oldData) { %>
+                    <% if (oldData.usado == true) { %> 
+                  checked <% }} else if (editable.flag_used_product == true) { %> 
+                  checked <% } %> />
               <span class="texto-span">No</span>
-              <input class="abm-radiobutton" type="radio" name="nuevo" value="0"
-                <% if (editable.flag_used_product == false) {%> checked <%}  %> />
+              <input 
+                class="abm-radiobutton" 
+                type="radio" 
+                name="usado" 
+                value="0" 
+                <% if (locals.oldData) { %>
+                  <% if (oldData.usado == false) { %> 
+                checked <% }} else if (editable.flag_used_product == false) { %> 
+                checked <% } %> />
             </div>
             <div class="div-select">
-              <label class="label-alta-prod" for="destacado-prod"
-                >El producto es un lanzamiento destacado?</label
-              >
-              <span class="texto-span">Si</span
-              ><input
+              <label class="label-alta-prod" for="destacado-prod">El producto es un lanzamiento destacado?</label>
+              <span class="texto-span">Si</span>
+              <input
                 class="abm-radiobutton"
                 type="radio"
                 name="lanzamiento"
                 value="1"
-                <% if (editable.flag_hot_product == true) {%>
-                    checked
-                  <%}  %> 
-              /><span class="texto-span">No</span
-              ><input
+                <% if (locals.oldData) { %>
+                  <% if (oldData.lanzamiento == true) { %> 
+                checked <% }} else if (editable.flag_hot_product == true) { %> 
+                checked <% } %> />
+              <span class="texto-span">No</span>
+              <input
                 class="abm-radiobutton"
                 type="radio"
-                name="viejo"
+                name="lanzamiento"
                 value="0"
-                <% if (editable.flag_hot_product == false) {%>
-                    checked
-                  <%}  %> 
-              />
+                <% if (locals.oldData) { %>
+                  <% if (oldData.lanzamiento == false) { %> 
+                checked <% }} else if (editable.flag_hot_product == false) { %> 
+                checked <% } %> />
             </div>
             <div class="div-select-alta">
               <label class="label-alta-prod" for="descripcionProd">Información adicional</label>
-              <textarea class="textarea-abm" name="descripcionProd" equired><%= editable.product_description_long %></textarea>
+              <textarea class="textarea-abm" name="descripcionProd" id="descripcionProd"><%= locals.oldData? oldData.descripcionProd : editable.product_description_long %></textarea>
+              <% if (locals.errors && errors.descripcionProd) { %>
+                  <p class="form-error"><%= errors.descripcionProd.msg %></p>
+              <% } %>
+              <p class="form-error" id="descripcionError"></p>
             </div>
             <div class="div-select">
               <button class="boton-abm" type="submit">MODIFICAR</button>
@@ -92,5 +126,6 @@
     </main>
 
     <%- include("../partials/footer") %>
+    <script src="/js/edicion-producto.js"></script>
   </body>
 </html>

@@ -51,5 +51,7 @@ router.post("/alta-usuario",  upload.single("foto"), validationAdminRegister, us
 
 router.get("/logout", authMiddleware, userController.logout);
 
+router.get('/perfil', userController.profile)
+
 module.exports = router;
 

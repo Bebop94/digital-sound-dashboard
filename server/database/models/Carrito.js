@@ -15,6 +15,9 @@ module.exports = function(sequelize, dataTypes) {
         flag_is_open: {
             type: dataTypes.INTEGER
         },
+        total_value: {
+            type: dataTypes.FLOAT(11,2)
+        },
         cart_date_created: {
             type: dataTypes.DATE
         },
@@ -45,7 +48,7 @@ module.exports = function(sequelize, dataTypes) {
             timestamps: false
         })
 
-        Carrito.hasMany(models.Carrito_Producto, {
+        Carrito.hasMany(models.CarritoProducto, {
             as: 'carrito_producto',
             foreignKey: 'cart_id'
         })

@@ -12,9 +12,6 @@
             <% if (locals.usuario) { %>
                 <p class="header-links"><%= usuario.nombre %></p>
             <% } %>
-            <a class="header-links" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a class="header-links" href="#"><i class="fa-solid fa-user"></i></a>
-            <a class="header-links" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
     </div>
     <div class="header-navDesktop-topNav">
@@ -24,7 +21,7 @@
             <a href="/productos/categoria/2">Baterías</a> |
             <a href="/productos/categoria/3">Amplificadores</a> |
             <a href="/productos/categoria/4">Accesorios</a> |
-            <a href="#">Marcas</a> |
+            <!-- <a href="#">Marcas</a> | -->
             <a href="/productos/nuevos-ingresos">Nuevos Ingresos</a> |
             <a href="/productos/usados">Usados</a>
         </p>
@@ -36,8 +33,9 @@
     </div>
     <!-- div para el logo -->
     <div class="header-divParaLogo">
-        <h2 class="header-logo"><span class="logo-digital">DIGITAL </span><span class="logo-sound">SOUND</span></h2>
+        <h2 class="header-logo"><a class="header-links" href='/'><span class="logo-digital">DIGITAL </span><span class="logo-sound">SOUND</span></a></h2>
         <img class="header-iconoSonido" src="/img/icono-musica.png">
     </div>
     <div><p class="header-leyendaChica">Todo para el audiófilo</p></div>
+    <script src="/js/admin-header.js"></script>  
 </header>

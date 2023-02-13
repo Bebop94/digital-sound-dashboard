@@ -20,6 +20,7 @@
             <% } %>
             <a class="header-links" href="/users/registro"><i class="fa-solid fa-user"></i></a>
             <a class="header-links" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span class="badge red z-depth-1 mr-1 cart-number" id="cart-number">Items en Carrito: 0</span>
         </div>
     </div>
     <div class="header-navDesktop">
@@ -29,7 +30,7 @@
             <a href="/productos/categoria/2">Baterías</a> |
             <a href="/productos/categoria/3">Amplificadores</a> |
             <a href="/productos/categoria/4">Accesorios</a> |
-            <a href="#">Marcas</a> |
+            <!-- <a href="#">Marcas</a> | -->
             <a href="/productos/nuevos-ingresos">Nuevos Ingresos</a> |
             <a href="/productos/usados">Usados</a> 
              <% if (locals.usuario) { %>

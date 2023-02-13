@@ -4,13 +4,16 @@ const { validationResult, body } = require('express-validator')
 const bcrypt = require('bcryptjs')
 let db = require("../../database/models")
 
-// const usersFilePath = path.join(__dirname, "../data/usuarios.json");
-// const usuarios = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-
-
 const usersController = {
 
 
+    profile: (req,res) => {
+        db.Usuario.findByPk(req.session.usuarioLogeado.id)
+        .then(usuario => {
+            res.render('users/profile', {usuario})
+        })
+    },
+    
     registro: (req, res) => {
 
         res.render("users/registro")
@@ -39,22 +42,6 @@ const usersController = {
         .then(() => {
             res.redirect("login");
         })
-
-        // let newUser = {
-        //     "id": Date.now(),
-        //     "nombre": req.body.nombre,
-        //     "apellido": req.body.apellido,
-        //     "email": req.body.email,
-        //     "categoria": "usuario",
-        //     "password": bcrypt.hashSync(req.body.password, 10),
-        //     "imagen": null
-        // };
-
-        // usuarios.push(newUser);
-
-        // fs.writeFileSync(usersFilePath, JSON.stringify(usuarios, null, " "));
-        
-        // res.redirect("login");
 
     },
 
@@ -146,22 +133,6 @@ const usersController = {
                 res.redirect("/users/abm-usuarios");
             })
         }
-
-        // let newUser = {
-        //     "id": Date.now(),
-        //     "nombre": req.body.nombre,
-        //     "apellido": req.body.apellido,
-        //     "email": req.body.email,
-        //     "categoria": 'admin',
-        //     "password": bcrypt.hashSync(req.body.password, 10),
-        //     "imagen": req.file.filename
-        // };
-
-        // usuarios.push(newUser);
-
-        // fs.writeFileSync(usersFilePath, JSON.stringify(usuarios, null, " "));
-
-        // res.redirect("/users/abm-usuario");
     }
 
 
