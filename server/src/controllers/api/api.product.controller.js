@@ -65,6 +65,30 @@ const productsApiController = {
             }
         )
         res.json({ok: true, status: 200, order: order})
+    },
+    search: async function (req, res) {
+        let results = await db.Producto.findAll({
+            where: {
+                product_name: {
+                    [Op.like]: "%"+req.params.keyword+"%"
+                }
+            }
+        })
+        res.json({
+            count: results.length,
+            products: results.map(producto => {
+                return {
+                    id: producto.id,
+                    product_name: producto.product_name,
+                    product_description_short: producto.product_description_short,
+                    product_price: producto.product_price,
+                    product_stock: producto.product_stock,
+                    category: producto.category_id,
+                    detail: `http://localhost:3030/productos/detalle/${producto.id}`,
+                    imagen: `http://localhost:3030/img/products/${producto.product_images}`,
+                }
+            })
+        })
     }
 }
 

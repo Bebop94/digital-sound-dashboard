@@ -3,8 +3,8 @@ const path = require('path');
 const multer = require('multer');
 const router = express.Router();
 
-const productApiController = require("../../controllers/api/api.cart.controller");
+const cartApiController = require("../../controllers/api/api.cart.controller");
 
-router.post('/checkout', productApiController.checkout)
+router.post('/checkout', cartApiController.checkout)
 
 module.exports = router;
