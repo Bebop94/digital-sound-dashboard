@@ -1,5 +1,13 @@
 function productosEnCarrito() {
-    return localStorage.cart ? JSON.parse(localStorage.cart).length : 0
+    if (localStorage.cart && localStorage.cart != '[]') {
+        let cart = JSON.parse(localStorage.cart)
+
+        return cart.reduce(
+            (acum, product) => (acum += product.product_quantity), 0
+        )
+    } else {
+        return 0
+    }
 }
 
 window.onload = function() {

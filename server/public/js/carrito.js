@@ -18,11 +18,11 @@ function calculateTotal(products) {
     )
 }
 
-// function calculateQuantity(products) {
-//     return products.reduce(
-//         (acum, product) => (acum += product.product_quantity), 0
-//     )
-// }
+function calculateQuantity(products) {
+    return products.reduce(
+        (acum, product) => (acum += product.product_quantity), 0
+    )
+}
 
 productArea = document.querySelector('.products')
 cartTotalText = document.querySelector('#cart-total-text')
@@ -35,9 +35,9 @@ window.addEventListener('load',() => {
 
     if (localStorage.cart && localStorage.cart != '[]') {
         let cart = JSON.parse(localStorage.cart);
-        
+
         cart.forEach((item, index) => {
-            fetch(`/api/products/${item.product_id}`)
+            fetch(`/api/products/item/${item.product_id}`)
             .then(res => res.json())
             .then(product => {
                 if(product) {
@@ -87,7 +87,7 @@ window.addEventListener('load',() => {
             })
             .then(() => {
                 cartTotal.innerHTML = `$${calculateTotal(productArray).toLocaleString()}`
-                // cartQuantity.innerHTML = `${calculateQuantity(productArray)} Items Cargados`
+                cartQuantity.innerHTML = `${calculateQuantity(productArray)} Items Cargados`
             })    
         })
     } else {
